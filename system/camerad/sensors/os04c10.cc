@@ -24,10 +24,16 @@ const uint32_t VS_TIME_MAX_OS04C10 = 34;  // vs < 35
 OS04C10::OS04C10() {
   image_sensor = cereal::FrameData::ImageSensor::OS04C10;
   data_word = false;
+
   frame_width = 1920;
   frame_height = 1080;
-  frame_stride = (1920*10/8);  // (0xa80*12//8)
-  extra_height = 0;            // top 2 + bot 14
+  frame_stride = (1920*10/8);
+
+  frame_width = 0xa80;
+  frame_height = 0x5f0;
+  frame_stride = 0xd20;
+
+  extra_height = 0;
   frame_offset = 0;
 
   start_reg_array.assign(std::begin(start_reg_array_os04c10), std::end(start_reg_array_os04c10));
