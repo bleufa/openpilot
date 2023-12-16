@@ -24,18 +24,18 @@ const uint32_t VS_TIME_MAX_OS04C10 = 34;  // vs < 35
 OS04C10::OS04C10() {
   image_sensor = cereal::FrameData::ImageSensor::OS04C10;
   data_word = false;
-  frame_width = FRAME_WIDTH;
-  frame_height = FRAME_HEIGHT;
-  frame_stride = FRAME_STRIDE;  // (0xa80*12//8)
-  extra_height = 16;            // top 2 + bot 14
-  frame_offset = 2;
+  frame_width = 1920;
+  frame_height = 1080;
+  frame_stride = (1920*10/8);  // (0xa80*12//8)
+  extra_height = 0;            // top 2 + bot 14
+  frame_offset = 0;
 
   start_reg_array.assign(std::begin(start_reg_array_os04c10), std::end(start_reg_array_os04c10));
   init_reg_array.assign(std::begin(init_array_os04c10), std::end(init_array_os04c10));
   probe_reg_addr = 0x300a;
   probe_expected_data = 0x5304;
-  in_port_info_dt = 0x2c; // one is 0x2a, two are 0x2b
-  power_config_val_low = 24000000; //Hz
+  in_port_info_dt = 0x2b; // one is 0x2a, two are 0x2b
+  power_config_val_low = 24000000; // Hz
 
   dc_gain_factor = 7.32;
   dc_gain_min_weight = 1;  // always on is fine
